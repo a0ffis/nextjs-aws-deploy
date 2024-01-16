@@ -31,9 +31,9 @@ on:
 
 env:
   AWS_REGION: ap-southeast-2                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: aws-nextjs-prod           # set this to your Amazon ECR repository name
-  ECS_SERVICE: aws-nextjs-production-services                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: aws-nextjs-production-container                 # set this to your Amazon ECS cluster name
+  ECR_REPOSITORY: aws-nextjs           # set this to your Amazon ECR repository name
+  ECS_SERVICE: aws-nextjs-service                 # set this to your Amazon ECS service name
+  ECS_CLUSTER: aws-nextjs-cluster                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: .aws/task-definition/production.json  # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: aws-nextjs-container           # set this to the name of the container in the
