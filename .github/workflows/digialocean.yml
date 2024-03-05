@@ -14,8 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Build container image
-      run: docker build -t registry.digitalocean.com/$CONTAINER_NAME/$IMAGE_NAME:${{ github.sha }} .
+    # - name: Build container image
+    #   run: docker build -t registry.digitalocean.com/$CONTAINER_NAME/$IMAGE_NAME:${{ github.sha }} .
    
     - name: Install doctl
       uses: digitalocean/action-doctl@v2
