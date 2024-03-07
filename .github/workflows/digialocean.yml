@@ -25,6 +25,7 @@ jobs:
       run: docker push ${{ secrets.DOCKER_USERNAME }}/$(echo $IMAGE_NAME)
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
