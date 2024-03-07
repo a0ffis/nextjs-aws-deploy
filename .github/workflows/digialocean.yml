@@ -20,7 +20,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . -f Dockerfile -t ${{ secrets.USER }}/$(echo $IMAGE_NAME)
     - name: Docker push
-      run: docker push ${{ secrets.USER }}/$(echo $IMAGE_NAME)
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/$(echo $IMAGE_NAME)
       
     # - name: Install doctl
     #   uses: digitalocean/action-doctl@v2
