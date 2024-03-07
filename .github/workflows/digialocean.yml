@@ -27,4 +27,4 @@ jobs:
     #   run: doctl registry login --expiry-seconds 600
 
     - name: Push image to Docker hub
-      run: docker push aoffis/github-workflows/$CONTAINER_NAME/$IMAGE_NAME:${{ github.sha }}
+      run: docker push aoffis/github-workflows:${{ github.sha }}
