@@ -3,6 +3,7 @@ name: Deploy to DigitalOcean
 on:
   workflow_dispatch:
 env: 
+  DOCKERHUB_NAME: 
   CONTAINER_NAME: git-registry
   IMAGE_NAME: deploy-image
 jobs:
@@ -14,18 +15,16 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    # - name: Build container image
-    #   run: docker build -t registry.digitalocean.com/$CONTAINER_NAME/$IMAGE_NAME:${{ github.sha }} .
+    - name: Build container image
+      run: docker build -t registry.digitalocean.com/$CONTAINER_NAME/$IMAGE_NAME:${{ github.sha }} .
    
-    - name: Install doctl
-      uses: digitalocean/action-doctl@v2
-      with:
-        # token: ${{ secrets.DOCTL_SECRET }}
-        no_auth: true
+    # - name: Install doctl
+    #   uses: digitalocean/action-doctl@v2
+    #   with:
+    #     token: ${{ secrets.DOCTL_SECRET }}
         
+    # - name: Log in to DigitalOcean Container Registry with short-lived credentials
+    #   run: doctl registry login --expiry-seconds 600
 
-    - name: Log in to DigitalOcean Container Registry with short-lived credentials
-      run: doctl registry login --expiry-seconds 600
-
-    - name: Push image to DigitalOcean Container Registry
-      run: docker push registry.digitalocean.com/$CONTAINER_NAME/$IMAGE_NAME:${{ github.sha }}
+    - name: Push image to Docker hub
+      run: docker push aoffis/github-workflows/$CONTAINER_NAME/$IMAGE_NAME:${{ github.sha }}
