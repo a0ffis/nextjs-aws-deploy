@@ -2,22 +2,21 @@ name: Deploy to DigitalOcean
 
 on:
   workflow_dispatch:
+
 env: 
   CONTAINER_NAME: git-registry
   IMAGE_NAME: deploy-image
-  USERNAME: ${{ secrets.USER }}
-  TOKEN: ${{ secrets.TOKEN }}
+
 jobs:
 
   build:
 
     runs-on: ubuntu-latest
-
+    environment: production
     steps:
     - uses: actions/checkout@v3
-
     - name: Login to GitHub Container Registry
-      run: echo ${{ env.TOKEN }} | docker login ghcr.io -u a0ffis --password-stdin
+      run: echo ${{ secrets.TOKEN }} | docker login ghcr.io -u ${{ secrets.USER }} --password-stdin
    
     # - name: Install doctl
     #   uses: digitalocean/action-doctl@v2
