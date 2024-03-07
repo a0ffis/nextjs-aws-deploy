@@ -16,11 +16,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Login to GitHub Container Registry
-      run: echo ${{ vars.TOKEN }} | docker login ghcr.io -u aoffis --password-stdin
-    - name: Build the Docker image
-      run: docker build . -f Dockerfile -t aoffis/$(echo $IMAGE_NAME)
-    - name: Docker push
-      run: docker push aoffis/$(echo $IMAGE_NAME)
+      uses: docker/login-action@v3
+      with:
+          registry: ghcr.io
+          username: aoffis
+          password: ${{ secrets.TOKEN }}
+    # - name: Login to GitHub Container Registry
+    #   run: echo ${{ vars.TOKEN }} | docker login ghcr.io -u aoffis --password-stdin
+    # - name: Build the Docker image
+    #   run: docker build . -f Dockerfile -t aoffis/$(echo $IMAGE_NAME)
+    # - name: Docker push
+    #   run: docker push aoffis/$(echo $IMAGE_NAME)
       
     # - name: Install doctl
     #   uses: digitalocean/action-doctl@v2
