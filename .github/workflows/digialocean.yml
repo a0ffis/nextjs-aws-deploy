@@ -23,10 +23,10 @@ jobs:
           password: ${{ secrets.TOKEN }}
     # - name: Login to GitHub Container Registry
     #   run: echo ${{ vars.TOKEN }} | docker login ghcr.io -u aoffis --password-stdin
-    # - name: Build the Docker image
-    #   run: docker build . -f Dockerfile -t aoffis/$(echo $IMAGE_NAME)
-    # - name: Docker push
-    #   run: docker push aoffis/$(echo $IMAGE_NAME)
+    - name: Build the Docker image
+      run: docker build . -f Dockerfile -t aoffis/$(echo $IMAGE_NAME)
+    - name: Docker push
+      run: docker push aoffis/$(echo $IMAGE_NAME)
       
     # - name: Install doctl
     #   uses: digitalocean/action-doctl@v2
