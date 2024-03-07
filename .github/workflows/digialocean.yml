@@ -15,9 +15,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
-    - name: docker login
-      run: echo $TOKEN | docker login ghcr.io -u ${USERNAME} --password-stdin
+
+    - name: docker login    
+      run: echo ${{ secrets.TOKEN }} | docker login ghcr.io -u ${{ secrets.USERNAME }} --password-stdin
     # - name: Build container image
     #   run: docker build -t registry.digitalocean.com/$CONTAINER_NAME/$IMAGE_NAME:${{ github.sha }} .
    
