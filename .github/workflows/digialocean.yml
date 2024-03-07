@@ -6,7 +6,7 @@ env:
   CONTAINER_NAME: git-registry
   IMAGE_NAME: deploy-image
   USERNAME: ${{ secrets.USER }}
-  TOKEN: ${{ vars.TOKEN }}
+  TOKEN: ${{ secrets.TOKEN }}
 jobs:
 
   build:
@@ -17,7 +17,8 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: docker login    
-      run: echo ${{ secrets.TOKEN }} | docker login ghcr.io -u ${{ secrets.USERNAME }} --password-stdin
+      run: echo ${{ vars.TOKEN }} | docker login ghcr.io -u ${{ secrets.USERNAME }} --password-stdin
+
     # - name: Build container image
     #   run: docker build -t registry.digitalocean.com/$CONTAINER_NAME/$IMAGE_NAME:${{ github.sha }} .
    
