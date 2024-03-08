@@ -42,6 +42,8 @@ jobs:
           docker stop ${{ env.IMAGE_NAME }}
           # Remove old container
           docker rm ${{ env.IMAGE_NAME }}
+          # Remove old image
+          docker rmi ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}
           # Run a new container from a new image
           docker run -d --restart always --name ${{ env.IMAGE_NAME }} ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}
 
