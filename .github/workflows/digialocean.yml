@@ -40,5 +40,12 @@ jobs:
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
           # docker stop container
           docker stop ${{ env.IMAGE_NAME }}
+          # Remove old container
+          docker rm ${{ env.IMAGE_NAME }}
+          # Run a new container from a new image
+          docker run -d \
+          --restart always \
+          --name ${{ env.IMAGE_NAME }} \
+          ${{ secrets.DOCKER_USER }}/${{ env.IMAGE_NAME }}}
 
       
